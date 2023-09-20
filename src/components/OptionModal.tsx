@@ -59,6 +59,7 @@ const OptionModal = () => {
       onRequestClose={handleRequestClose}
       shouldCloseOnEsc={false} // handled by hotkeys-js
       className={'modal-content'}
+      ariaHideApp={false}
     >
       <fieldset>
         <legend>{t('grid option')}</legend>
@@ -155,8 +156,8 @@ const OptionModal = () => {
   )
 };
 
-if (process.env.NODE_ENV !== 'test') {
-  ReactModal.setAppElement('#root');
-}
+// if (process.env.NODE_ENV !== 'test') {
+//   ReactModal.setAppElement('#root');
+// }
 
 export default OptionModal;
