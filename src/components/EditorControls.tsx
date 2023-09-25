@@ -14,7 +14,7 @@ import SubmitPreview from './SubmitPreview';
 
 import './EditorControls.css';
 
-const EditorControls = () => {
+const EditorControls = ({className}:{className?:string}) => {
   const glyph = useSelector((state: AppState) => state.glyph);
   const selection = useSelector((state: AppState) => state.selection);
   const clipboard = useSelector((state: AppState) => state.clipboard);
@@ -64,7 +64,7 @@ const EditorControls = () => {
 
   const { t } = useTranslation();
   return (
-    <div className="editor-controls">
+    <div className={className}>
       <SelectionInfo />
       <div className="control-buttons">
         <button

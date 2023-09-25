@@ -16,7 +16,7 @@ import AreaSelectRect from './AreaSelectRect';
 
 import './GlyphArea.css';
 
-const GlyphArea = () => {
+const GlyphArea = ({className}:{className?:string}) => {
   const glyph = useSelector(draggedGlyphSelector);
   const buhinMap = useSelector((state: AppState) => state.buhinMap);
   const shotai = useSelector((state: AppState) => state.shotai);
@@ -87,7 +87,7 @@ const GlyphArea = () => {
   }, [dispatch]);
 
   return (
-    <div className="glyph-area">
+    <div className={className}>
       <svg
         width="100%" height="100%" viewBox="-20 -20 500 240"
         className={svgClassName}

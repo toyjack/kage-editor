@@ -8,17 +8,17 @@ import OptionModal from './components/OptionModal';
 
 import { useShortcuts } from './shortcuts';
 
-import './App.css';
+import styles from './App.module.css';
 import { useTranslation } from 'react-i18next';
 
 function App() {
   const { i18n } = useTranslation();
   useShortcuts();
   return (
-    <div className="App" lang={i18n.language}>
-      <GlyphArea />
-      <EditorControls />
-      <PartsSearch />
+    <div className={styles.app} lang={i18n.language}>
+      <GlyphArea className={styles.glyphArea} />
+      <EditorControls className={styles.editorControls} />
+      <PartsSearch className={styles.partsSearchArea} />
       <SubmitForm />
       <OptionModal />
     </div>
