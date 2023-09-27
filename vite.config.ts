@@ -1,10 +1,19 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
+import jotaiDebugLabel from 'jotai/babel/plugin-debug-label'
+import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({
+    babel:{
+      plugins:[
+        jotaiDebugLabel,
+        jotaiReactRefresh,
+      ]
+    }
+  })],
   css:{
     modules:{
       scopeBehaviour: 'local',
@@ -21,9 +30,7 @@ export default defineConfig({
     rollupOptions:{
       external: ['react', ],
       output:{
-        globals:{
-          react: 'React',
-        }
+        assetFileNames: 'kage-editor.[ext]',
       }
     }
   }

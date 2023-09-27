@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import ReactModal from 'react-modal';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@nextui-org/react';
 
 import { displayActions } from '../actions/display';
 import { AppState } from '../reducers';
@@ -150,7 +151,7 @@ const OptionModal = () => {
         </select>
       </div>
       <div>
-        <button onClick={handleRequestClose}>{t('close modal')}</button>
+        <Button color='danger' onClick={handleRequestClose}>{t('close modal')}</Button>
       </div>
     </ReactModal>
   )

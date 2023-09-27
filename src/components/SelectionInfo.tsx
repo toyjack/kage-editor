@@ -3,6 +3,7 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { createSelector } from 'reselect';
 import { useTranslation } from 'react-i18next';
+import { Button, ButtonGroup, Select, SelectItem } from '@nextui-org/react';
 
 import { editorActions } from '../actions/editor';
 import { selectActions } from '../actions/select';
@@ -216,7 +217,7 @@ const SelectionInfo = () => {
         {strokeInfo && <>
           <div>
             {t('stroke type')}
-            <select value={strokeInfo.strokeType} onChange={changeStrokeType}>
+            <select className='select select-bordered border-primary select-sm' value={strokeInfo.strokeType} onChange={changeStrokeType}>
               {strokeTypes.map((strokeType) => (
                 <option key={strokeType} value={strokeType}>
                   {t(`stroke type ${strokeType}`)}
@@ -228,7 +229,7 @@ const SelectionInfo = () => {
             </select>
             {' '}
             {t('head type')}
-            <select value={strokeInfo.headShapeType} onChange={changeHeadShapeType}>
+            <select className='select select-bordered border-primary select-sm' value={strokeInfo.headShapeType} onChange={changeHeadShapeType}>
               {headShapeTypes[strokeInfo.strokeType].map((headShapeType) => (
                 <option key={headShapeType} value={headShapeType}>
                   {t(`head type ${strokeInfo.strokeType}-${headShapeType}`)}
@@ -240,7 +241,7 @@ const SelectionInfo = () => {
             </select>
             {' '}
             {t('tail type')}
-            <select value={strokeInfo.tailShapeType} onChange={changeTailShapeType}>
+            <select className='select select-bordered border-primary select-sm' value={strokeInfo.tailShapeType} onChange={changeTailShapeType}>
               {tailShapeTypes[strokeInfo.strokeType].map((tailShapeType) => (
                 <option key={tailShapeType} value={tailShapeType}>
                   {t(`tail type ${strokeInfo.strokeType}-${tailShapeType}`)}
@@ -302,36 +303,52 @@ const SelectionInfo = () => {
           {otherInfo.coordString && <div>{otherInfo.coordString}</div>}
         </>}
       </div>
-      <div className="selection-control">
-        <button
-          disabled={swapPrevDisabled}
-          onClick={swapWithPrev}
-        >
-          {t('swap with prev')}
-        </button>
-        <button
-          className="select-prevnext-button"
-          disabled={selectPrevDisabled}
-          onClick={selectPrev}
-        >
-          {t('select prev')}
-        </button>
-        <div className="selection-num">
+      <div className="flex items-center justify-center gap-4">
+        <ButtonGroup>
+          <Button
+            size='sm'
+            variant='ghost'
+            color='primary'
+            disabled={swapPrevDisabled}
+            onClick={swapWithPrev}
+          >
+            {t('swap with prev')}
+          </Button>
+          <Button
+            size='sm'
+            variant='ghost'
+            color='primary'
+            className="select-prevnext-button"
+            disabled={selectPrevDisabled}
+            onClick={selectPrev}
+          >
+            {t('select prev')}
+          </Button>
+        </ButtonGroup>
+        <div className="m-1 text-center content-center text-content">
           {selectIndexString}
         </div>
-        <button
-          className="select-prevnext-button"
-          disabled={selectNextDisabled}
-          onClick={selectNext}
-        >
-          {t('select next')}
-        </button>
-        <button
-          disabled={swapNextDisabled}
-          onClick={swapWithNext}
-        >
-          {t('swap with next')}
-        </button>
+        <ButtonGroup>
+          <Button
+            size='sm'
+            variant='ghost'
+            color='primary'
+            className="select-prevnext-button"
+            disabled={selectNextDisabled}
+            onClick={selectNext}
+          >
+            {t('select next')}
+          </Button>
+          <Button
+            size='sm'
+            variant='ghost'
+            color='primary'
+            disabled={swapNextDisabled}
+            onClick={swapWithNext}
+          >
+            {t('swap with next')}
+          </Button>
+        </ButtonGroup>
       </div>
     </div>
   );
