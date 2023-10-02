@@ -1,7 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import args from "./args";
+// import args from "./args";
+import store from './store';
 
 import jaTranslation from './locales/ja.json';
 import enTranslation from './locales/en.json';
@@ -28,20 +29,21 @@ const resources = {
 };
 
 let lng = 'ja';
-switch (args.host.split('.')[0]) {
-  case 'en':
-    lng = 'en';
-    break;
-  case 'ko':
-    lng = 'ko';
-    break;
-  case 'zhs':
-    lng = 'zh-Hans';
-    break;
-  case 'zht':
-    lng = 'zh-Hant';
-    break;
-}
+lng = store.getState().args.lang;
+// switch (args.host.split('.')[0]) {
+//   case 'en':
+//     lng = 'en';
+//     break;
+//   case 'ko':
+//     lng = 'ko';
+//     break;
+//   case 'zhs':
+//     lng = 'zh-Hans';
+//     break;
+//   case 'zht':
+//     lng = 'zh-Hant';
+//     break;
+// }
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next

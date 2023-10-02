@@ -6,7 +6,6 @@ import { Button, ButtonGroup, Input } from "@nextui-org/react";
 
 import { editorActions } from "../actions/editor";
 import { search } from "../callapi";
-import args from "../args";
 
 import PartsList from "./PartsList";
 
@@ -18,8 +17,6 @@ const searchSuggestions = [
   "エディタ部品3",
   "エディタ部品4",
 ];
-
-const initialQuery = args.name || "";
 
 class QueryTooShortError extends Error {}
 
@@ -79,8 +76,12 @@ const PartsSearch = ({ className }: { className?: string }) => {
       });
   };
 
+  const args = JSON.parse(localStorage.getItem("kage-editor-args") || "{}");
+  const initialQuery = args.name || "";
+
   useEffect(() => {
     if (initialQuery) {
+      console.log("initialQuery", initialQuery)
       startSearch(initialQuery);
     }
   }, []);

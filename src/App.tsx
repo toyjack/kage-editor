@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import GlyphArea from './components/GlyphArea';
 import EditorControls from './components/EditorControls';
@@ -10,16 +10,31 @@ import { useShortcuts } from './shortcuts';
 
 import styles from './App.module.css';
 import { useTranslation } from 'react-i18next';
-import { useAtom } from 'jotai';
-import sanitizedArgs, { hostAtom } from '../lib/args';
+import { AppProps } from './types';
+import { AppState } from './reducers';
+import {  useDispatch, useSelector } from 'react-redux';
+import { editorActions } from './actions/editor';
 
-function App() {
+function App(props: AppProps) {
+  const args = useSelector((state: AppState) => state.args);
+
+  useEffect(()=>{
+    updateArgs();
+  },[])
+
+  const dispatch = useDispatch();
+  const updateArgs = useCallback(
+    () => {
+      dispatch(editorActions.updateArgs({ ...args,...props }));
+    },
+    [dispatch]
+  );
+  
   const { i18n } = useTranslation();
   useShortcuts();
-  const host = sanitizedArgs.host
   return (
     <div className={styles.app} lang={i18n.language}>
-      <div className='text-4xl text-red-700'>{host}</div>
+      <pre className='text-4xl text-red-700'>{JSON.stringify(args,null,2)}</pre>
       <GlyphArea className={styles.glyphArea} />
       <EditorControls className={styles.editorControls} />
       <PartsSearch className={styles.partsSearchArea} />

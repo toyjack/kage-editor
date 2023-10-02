@@ -32,4 +32,6 @@ export const editorActions = {
   escape: actionCreator('PRESS_ESC_KEY'),
 
   finishEdit: actionCreator<Event>('FINISH_EDIT'),
+
+  updateArgs: actionCreator<any>('UPDATE_ARGS'),
 };

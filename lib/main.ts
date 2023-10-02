@@ -1,1 +1,0 @@
-export { KageEditor } from "./index";

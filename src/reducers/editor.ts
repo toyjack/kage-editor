@@ -249,6 +249,11 @@ const updateBuilder = (builder: ReducerBuilder<AppState>) => builder
   .case(editorActions.finishEdit, (state, evt) => ({
     ...state,
     exitEvent: evt,
+  }))
+  
+  .case(editorActions.updateArgs, (state, args) => ({
+    ...state,
+    args,
   }));
 
 

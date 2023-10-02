@@ -12,9 +12,11 @@ module.exports = {
     extend: {},
   },
   darkMode: "class",
-  plugins: [nextui(),require("daisyui")],
+  plugins: [nextui({
+    defaultTheme:"light"
+  }),require("daisyui")],
   daisyui: {
-    themes:['winter','dark']
+    themes:['winter',]
   },
 }
 

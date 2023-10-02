@@ -41,6 +41,14 @@ export interface AppState {
   showStrokeCenterLine: boolean;
   shotai: KShotai;
   xorMaskType: XorMaskType;
+
+  args: {
+    host: string;
+    lang: "ja" | "en" | "ko" | "zh-Hans" | "zh-Hant";
+    name: string;
+    related: string;
+    data: string;
+  };
 }
 
 const initialState: AppState = {
@@ -72,6 +80,14 @@ const initialState: AppState = {
   showStrokeCenterLine: false,
   shotai: 0, // kMincho
   xorMaskType: "none",
+
+  args: {
+    host: "http://localhost:3000/api",
+    lang: "ja",
+    name: "u3013",
+    related: "〓",
+    data: "",
+  },
 };
 
 const reducer = undoable(

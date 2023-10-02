@@ -1,17 +1,22 @@
-import { gwHosts } from "./args";
+import store from "./store";
 
-// Responses from GlyphWiki's API for glyphEditor lack headers required for cross-origin requests.
-// We call GlyphWiki's API directly if it is same-origin (i.e. this app is deployed to GlyphWiki site),
-// otherwise we call it via the reverse proxy that adds the 'Access-Control-Allow-Origin: *' header in the response.
+let apiUrlPrefix:string="http://localhost:3000/api";
 
-const isSameOriginAPI = (
-  ["http:", "https:"].includes(window.location.protocol) &&
-  gwHosts.includes(window.location.host)
-);
+if (store) {
+  apiUrlPrefix = store.getState().args.host;
+  const listener = () => {
+    apiUrlPrefix = store.getState().args.host;
+  }
+  store.subscribe(listener);
+}
+// const listener = () => {
+//   apiUrlPrefix = store.getState().args.host;
+// }
+// console.log(store)
+// store.subscribe(listener);
 
-const apiUrlPrefix = isSameOriginAPI
-  ? ''
-  : 'https://asia-northeast1-ku6goma.cloudfunctions.net/gwproxy';
+// apiUrlPrefix = store? store.getState().args.host : "http://localhost:3000/api";
+// const apiUrlPrefix = "http://localhost:3000/api";
 
 const callApi = async (path: string) => {
   const response = await fetch(apiUrlPrefix + path);
