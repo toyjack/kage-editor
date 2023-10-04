@@ -4,7 +4,6 @@ import { RectPointPosition, CTMInv } from '../actions/drag';
 
 import { GlyphLine, Glyph, parseGlyph } from '../kageUtils/glyph';
 import { StretchParam } from '../kageUtils/stretchparam';
-import args from '../args';
 import { KShotai } from '../kage';
 
 import select from './select';
@@ -43,16 +42,19 @@ export interface AppState {
   xorMaskType: XorMaskType;
 
   args: {
-    host: string;
-    lang: "ja" | "en" | "ko" | "zh-Hans" | "zh-Hant";
     name: string;
     related: string;
     data: string;
+    onSubmit?: (data: string) => void;
   };
 }
 
+const initialGlyph = localStorage.getItem("kage-editor-data")
+  ? localStorage.getItem("kage-editor-data")
+  : "";
+
 const initialState: AppState = {
-  glyph: parseGlyph(args.data),
+  glyph: parseGlyph(initialGlyph as string),
   selection: [],
 
   areaSelectRect: null,
@@ -82,8 +84,6 @@ const initialState: AppState = {
   xorMaskType: "none",
 
   args: {
-    host: "http://localhost:3000/api",
-    lang: "ja",
     name: "u3013",
     related: "〓",
     data: "",

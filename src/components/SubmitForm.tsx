@@ -27,12 +27,19 @@ const formStyle: React.CSSProperties = {
 const SubmitForm = () => {
   const exitEvent = useSelector((state: AppState) => state.exitEvent);
   const formRef = useRef<HTMLFormElement>(null);
+  const argsState = useSelector((state: AppState) => state.args);
+
   useEffect(() => {
     if (exitEvent) {
-      formRef.current?.submit();
+      if(argsState.onSubmit){
+        argsState.onSubmit(unparseGlyph(glyph));
+      }
     }
   }, [exitEvent]);
   const glyph = useSelector(submitGlyphSelector);
+
+  // TODO: delete unused args
+  
   return (
     <form
       style={formStyle}

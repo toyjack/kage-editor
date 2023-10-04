@@ -1,7 +1,6 @@
 {
-  "name": "kage-editor",
+  "name": "kage-editor-comp",
   "version": "0.1.0",
-  "private": true,
   "module": "dist/kage-editor-component.mjs",
   "types": "dist/kage-editor-component.d.ts",
   "exports": {
@@ -12,15 +11,18 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toyjack/kage-editor.git"
+  },
+  "homepage": "https://github.com/toyjack/kage-editor/tree/wrap#readme",
   "dependencies": {
     "@kurgm/kage-engine": "^0.5.0",
     "@nextui-org/react": "^2.1.13",
     "@reduxjs/toolkit": "^1.9.6",
-    "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",
     "geometric": "^2.2.10",
     "i18next": "^22.1.5",
-    "jotai": "^2.4.2",
     "memoize-one": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,8 +31,7 @@
     "react-modal": "^3.11.2",
     "react-redux": "^8.0.2",
     "redux": "^4.0.5",
-    "reselect": "^4.0.0",
-    "web-vitals": "^2.1.0"
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -51,30 +52,12 @@
     "typescript-fsa": "^3.0.0",
     "typescript-fsa-reducers": "^1.2.2",
     "vite": "^4.4.9",
-    "vite-plugin-dts": "^3.6.0"
+    "vite-plugin-dts": "^3.6.0",
+    "vite-plugin-lib-inject-css": "^1.3.0"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "homepage": "."
+  }
 }
